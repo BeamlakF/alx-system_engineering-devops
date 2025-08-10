@@ -1,0 +1,55 @@
+# Application Server vs Web Server and Infrastructure Design
+
+## Overview
+
+This document explains the roles of an **application server** and a **web server**, and describes a web infrastructure design that includes:
+
+- One dedicated **load balancer cluster** (two HAproxy instances configured for high availability)
+- Separate servers for:
+  - Web server
+  - Application server
+  - Database server
+
+## Application Server vs Web Server
+
+- **Web Server:**  
+  Responsible for handling HTTP requests, serving static content (HTML, CSS, JS, images), and forwarding dynamic requests to the application server.  
+  Examples: Nginx, Apache.
+
+- **Application Server:**  
+  Executes backend business logic and processes dynamic content. It runs the application code, interacts with databases, and generates responses for the web server to send.  
+  Examples: Node.js, PHP-FPM, Tomcat.
+
+## Infrastructure Design
+
+### Components
+
+- **Load Balancer Cluster (HAproxy):**  
+  Two HAproxy servers configured in a high availability (HA) cluster distribute incoming traffic across web servers.  
+  This eliminates the load balancer as a single point of failure (SPOF).
+
+- **Web Server:**  
+  Handles incoming HTTP requests, serves static files, and proxies dynamic requests to the application server.
+
+- **Application Server:**  
+  Processes dynamic application logic and communicates with the database.
+
+- **Database Server:**  
+  Dedicated server running MySQL for data persistence.
+
+### Why these components?
+
+- **Load Balancer Cluster:**  
+  Provides fault tolerance and distributes load efficiently, ensuring high availability.
+
+- **Separated Servers:**  
+  Splitting components improves scalability, security, and fault isolation.
+
+## Summary
+
+This infrastructure improves availability and scalability by:
+
+- Avoiding SPOF with a load balancer cluster
+- Separating concerns into dedicated servers
+- Allowing each component to be optimized independently
+
