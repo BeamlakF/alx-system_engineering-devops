@@ -1,0 +1,27 @@
+# 2-secured_and_monitored_web_infrastructure
+
+## Diagram Link:
+https://i.imgur.com/your-upload-link.png
+
+## Explanation:
+
+- Users access www.foobar.com over HTTPS.
+- DNS resolves www.foobar.com to the load balancer IP.
+- Load balancer (HAproxy) terminates SSL using an SSL certificate.
+- Traffic inside the infrastructure may be unencrypted (potential issue).
+- Firewalls protect each server by restricting network traffic.
+- Monitoring clients run on each server to collect metrics and logs.
+- Metrics collected include CPU usage, memory, application logs, and web server QPS.
+- Monitoring data is sent to a monitoring service like Sumologic for analysis.
+
+## Components Added:
+
+- **Firewalls:** Secure servers by filtering traffic.
+- **SSL Certificate:** Enables encrypted HTTPS traffic.
+- **Monitoring Clients:** Collect data to monitor server health and performance.
+
+## Known Issues:
+
+- SSL termination at load balancer means unencrypted internal traffic.
+- Single MySQL server for writes is a scalability bottleneck.
+- Running all components on the same servers may lead to resource contention and fault isolation problems.
