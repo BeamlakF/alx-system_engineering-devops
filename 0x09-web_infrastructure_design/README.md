@@ -24,7 +24,5 @@ This project demonstrates a simple one-server web infrastructure for hosting www
 - Downtime during maintenance
 - No horizontal scalability
 
-## Diagram
 
-![Simple Web Stack Diagram](https://i.imgur.com/your-upload-link.png)
 
