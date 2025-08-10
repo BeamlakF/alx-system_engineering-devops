@@ -1,0 +1,23 @@
+# 0-simple_web_stack
+
+## Diagram link:
+https://i.imgur.com/your-upload-link.png
+
+## Explanation:
+
+- The user enters www.foobar.com in their browser.
+- DNS resolves www.foobar.com to IP 8.8.8.8.
+- The request reaches the single server at 8.8.8.8.
+- Nginx web server receives the request.
+- Static files served directly by Nginx.
+- Dynamic requests forwarded to application server.
+- Application server processes business logic and queries MySQL database.
+- Database returns requested data to application server.
+- Response is sent back through Nginx to user’s browser.
+
+## Infrastructure limitations:
+
+- Single Point of Failure: If the server is down, website is unavailable.
+- Downtime needed for maintenance and code deployment.
+- Cannot handle high traffic; no load balancing or scaling.
+
