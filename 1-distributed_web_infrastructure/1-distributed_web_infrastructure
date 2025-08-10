@@ -1,0 +1,39 @@
+# 1-distributed_web_infrastructure
+
+## Diagram Link:
+https://i.imgur.com/your-upload-link.png
+
+## Explanation:
+
+- Users access www.foobar.com.
+- DNS resolves www.foobar.com to the load balancer IP.
+- HAproxy load balancer distributes incoming HTTP requests using the Round Robin algorithm.
+- Requests are sent to Server 1 running Nginx and the application server.
+- The application server processes logic and queries the MySQL database on Server 2.
+- MySQL is configured in a Primary-Replica cluster: Primary accepts writes; Replica replicates data and handles reads.
+- Responses are sent back to users through the load balancer.
+
+## Components Added:
+
+- **Load Balancer (HAproxy):** added for distributing traffic and improving availability.
+- **Primary-Replica Database:** added for scaling read operations and data redundancy.
+
+## Distribution Algorithm:
+
+- Round Robin sends requests evenly to servers in turn, balancing the load.
+
+## Active-Active vs Active-Passive:
+
+- Active-Active: both servers serve requests simultaneously (used here).
+- Active-Passive: one active server, the other standby for failover.
+
+## Primary-Replica Database Explanation:
+
+- Primary node accepts writes.
+- Replica node replicates data and handles read queries.
+
+## Issues:
+
+- Load balancer and primary database are SPOFs.
+- No firewalls or HTTPS security.
+- No monitoring tools configured.
